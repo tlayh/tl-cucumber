@@ -51,4 +51,5 @@ end
 # install via bundle
 execute "bundle install" do
 	command "bundle install"
+	cwd "/home/vagrant/"
 end
