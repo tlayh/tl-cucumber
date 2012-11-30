@@ -37,6 +37,10 @@ execute "export bundle" do
 	command "export PATH=.bundle/bin:$GEM_HOME/bin:$PATH"
 end
 
+execute "install bundler" do
+	command "gem install bundle"
+end
+
 # copy Gemfile
 cookbook_file "/home/vagrant/Gemfile" do
   source "Gemfile"
