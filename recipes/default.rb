@@ -1,9 +1,33 @@
 #
-# Cookbook Name: tl_cucumber
+# Cookbook Name: tl-cucumber
 #
 
-execute "install ruby" do
-	command "apt-get install libxslt1-dev libxml2-dev build-essential g++ ruby1.9.1-dev postgresql libpq-dev"
+packages=[
+	"libxslt1-dev",
+	"libxml2-dev",
+	"build-essential",
+	"g++",
+	"ruby1.9.1-dev",
+	"postgresql",
+	"libpq-dev",
+	"qt4-qmake",
+	"libqt4-dev",
+	"libqtwebkit-dev",
+	"xvfb"
+]
+
+case node[:platform]
+when "debian","ubuntu"
+	packagespurge.each do |pkg|
+		package pkg do
+			action :remove
+		end
+	end
+	packages.each do |pkg|
+		package pkg do
+			action :upgrade
+		end
+	end
 end
 
 execute "set some pathes 1" do
@@ -16,18 +40,6 @@ end
 
 execute "export bundle" do
 	command "export PATH=.bundle/bin:$GEM_HOME/bin:$PATH"
-end
-
-execute "install qt4-make" do
-	command "aptitude install qt4-qmake"
-end
-
-execute "install libwebkit" do
-	command "apt-get install libqt4-dev libqtwebkit-dev"
-end
-
-execute "install xvfb" do
-	command "apt-get install xvfb"
 end
 
 # copy Gemfile
