@@ -18,11 +18,6 @@ packages=[
 
 case node[:platform]
 when "debian","ubuntu"
-	packagespurge.each do |pkg|
-		package pkg do
-			action :remove
-		end
-	end
 	packages.each do |pkg|
 		package pkg do
 			action :upgrade
