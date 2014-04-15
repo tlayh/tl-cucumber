@@ -1,3 +1,4 @@
+name             "tl-cucumber"
 maintainer       "Thomas Layh"
 maintainer_email "thomas@layh.com"
 license          "MIT"
